@@ -6,4 +6,9 @@ class User < ApplicationRecord
   validates :username,presence: true,
                     format: { with: /\A(?=.*[a-z])[a-z\d]+\Z/i },
                     uniqueness: { case_sensitive: false }
+attr_accessor :login
+include Authenticable
+def to_param
+  username
+end
 end
